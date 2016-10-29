@@ -31,4 +31,8 @@ RUN wget --no-verbose -O /tmp/geckodriver.tar.gz https://github.com/mozilla/geck
 COPY entrypoint.sh /
 RUN chmod +x entrypoint.sh
 
+VOLUME /tmp
+
+EXPOSE 4444
+
 ENTRYPOINT /entrypoint.sh

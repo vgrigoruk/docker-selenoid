@@ -7,8 +7,14 @@ RUN go get github.com/aandryashin/selenoid && \
 
 ADD etc/selenoid /etc/selenoid
 
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
+
+ENV DOCKER_API='unix:///var/run/docker.sock'
+ENV MAX_INSTANCES=5
+
 VOLUME /etc/selenoid
 
 EXPOSE 4444
 
-CMD ["/usr/bin/selenoid","-conf","/etc/selenoid/browsers.json"]
+ENTRYPOINT /entrypoint.sh

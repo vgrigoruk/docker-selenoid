@@ -5,10 +5,6 @@
       "latest": {
         "image": "selenoid/firefox:latest",
         "port": "4444"
-      },
-      "49.0": {
-        "image": "selenoid/firefox:49.0",
-        "port": "4444"
       }
     }
   },
@@ -17,10 +13,6 @@
     "versions": {
       "latest": {
         "image": "selenoid/chrome:latest",
-        "port": "4444"
-      },
-      "54.0": {
-        "image": "selenoid/chrome:54.0",
         "port": "4444"
       }
     }

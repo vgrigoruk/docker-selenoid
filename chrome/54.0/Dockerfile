@@ -1,7 +1,5 @@
 FROM selenoid/browser-base:latest
 
-USER root
-
 #============================================
 # Google Chrome
 #============================================
@@ -31,5 +29,9 @@ RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$C
 
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
+
+VOLUME /tmp
+
+EXPOSE 4444
 
 ENTRYPOINT /entrypoint.sh

@@ -1,5 +1,10 @@
 FROM selenoid/browser-base:latest
 
+RUN sudo useradd selenoid --shell /bin/bash --create-home \
+  && sudo usermod -a -G sudo selenoid \
+  && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
+  && echo 'selenoid:secret' | chpasswd
+
 #============================================
 # Google Chrome
 #============================================
@@ -33,5 +38,7 @@ RUN chmod +x /entrypoint.sh
 VOLUME /tmp
 
 EXPOSE 4444
+
+USER selenoid
 
 ENTRYPOINT /entrypoint.sh

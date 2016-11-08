@@ -9,7 +9,7 @@ RUN sudo useradd selenoid --shell /bin/bash --create-home \
 # Google Chrome
 #============================================
 
-ARG CHROME_VERSION="54.0.2840.71-1"
+ARG CHROME_VERSION="54.0.2840.90-1"
 
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \

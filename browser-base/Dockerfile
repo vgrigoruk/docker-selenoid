@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --force-yes ttf-mscorefonts-installer \
     xfonts-utils \
     flashplugin-installer \
     unzip \
+    dbus \
     xvfb
 
 RUN echo 'Europe/Moscow' | sudo tee /etc/timezone && dpkg-reconfigure -f noninteractive tzdata

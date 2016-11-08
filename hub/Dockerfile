@@ -1,8 +1,8 @@
 FROM golang:1.7
 
-RUN go get github.com/aandryashin/selenoid && \
-    cd $GOPATH/src/github.com/aandryashin/selenoid && \
-    go build && \
+RUN go get -u github.com/kardianos/govendor && \
+    go get -d github.com/aandryashin/selenoid && \
+    cd $GOPATH/src/github.com/aandryashin/selenoid && govendor sync && go build && \
     cp $GOPATH/src/github.com/aandryashin/selenoid/selenoid /usr/bin/selenoid
 
 ADD etc/selenoid /etc/selenoid

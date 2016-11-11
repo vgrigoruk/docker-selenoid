@@ -1,29 +1,24 @@
 FROM selenoid/browser-base:latest
 
-RUN sudo useradd selenoid --shell /bin/bash --create-home \
-  && sudo usermod -a -G sudo selenoid \
-  && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
-  && echo 'selenoid:secret' | chpasswd
+#============================================
+# Dbus issue: https://github.com/SeleniumHQ/docker-selenium/issues/87
+#============================================
+ENV DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 #============================================
 # Google Chrome
 #============================================
-
-ARG CHROME_VERSION="54.0.2840.90-1"
-
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update -qqy && \
-    apt-get -qqy install google-chrome-stable=${CHROME_VERSION} && \
+    apt-get -qqy install google-chrome-stable && \
     rm /etc/apt/sources.list.d/google-chrome.list && \
     rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 #==================
 # Chrome driver
 #==================
-
 ARG CHROME_DRIVER_VERSION=2.24
-
 RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip && \
     rm -rf /opt/selenium/chromedriver && \
     unzip /tmp/chromedriver.zip -d /opt/selenium && \

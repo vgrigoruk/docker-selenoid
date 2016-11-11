@@ -15,4 +15,4 @@ echo -e "\n\n"
 df -h
 
 echo "Starting Chromedriver on port $NODE_PORT..."
-xvfb-run -a -s '-screen 0 1280x1600x24 -noreset' $CHROMEDRIVER_PATH $CHROMEDRIVER_ARGS
+xvfb-run -a -s "-screen 0 $SCREEN -noreset" $CHROMEDRIVER_PATH $CHROMEDRIVER_ARGS

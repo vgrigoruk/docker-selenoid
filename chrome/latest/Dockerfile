@@ -18,7 +18,7 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 #==================
 # Chrome driver
 #==================
-ARG CHROME_DRIVER_VERSION=2.24
+ARG CHROME_DRIVER_VERSION=2.29
 RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip && \
     rm -rf /opt/selenium/chromedriver && \
     unzip /tmp/chromedriver.zip -d /opt/selenium && \
